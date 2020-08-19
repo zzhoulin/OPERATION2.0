@@ -52,10 +52,10 @@ class Config:
         # TEST 测试环境
         self.tester_test = self.get_conf(Config.TITLE_TEST, Config.VALUE_TESTER)
         self.environment_test = self.get_conf(Config.TITLE_TEST, Config.VALUE_ENVIRONMENT)
-        self.version_base = self.get_conf(Config.TITLE_TEST, Config.VALUE_VERSION)
-        self.host_base = self.get_conf(Config.TITLE_TEST, Config.VALUE_HOST)
-        self.loginHost_base = self.get_conf(Config.TITLE_TEST, Config.VALUE_LOGINHOST)
-        self.loginInfo_base = self.get_conf(Config.TITLE_TEST, Config.VALUE_LOGININFO)
+        self.version_test = self.get_conf(Config.TITLE_TEST, Config.VALUE_VERSION)
+        self.host_test = self.get_conf(Config.TITLE_TEST, Config.VALUE_HOST)
+        self.loginHost_test = self.get_conf(Config.TITLE_TEST, Config.VALUE_LOGINHOST)
+        self.loginInfo_test = self.get_conf(Config.TITLE_TEST, Config.VALUE_LOGININFO)
 
         # PRE 预发环境
         self.tester_pre = self.get_conf(Config.TITLE_PRE, Config.VALUE_TESTER)
