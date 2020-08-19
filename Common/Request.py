@@ -1,2 +1,127 @@
 # -*- coding: utf-8 -*-
 # @Author : Joy
+
+import random
+import requests
+import os
+import json
+from requests_toolbelt import MultipartEncoder
+from Common import Consts
+from Common import Token
+
+
+class Request:
+
+    def __init__(self, env):
+        self.token = Token.Token()
+        self.get_token = self.token.get_token(env)
+
+    @staticmethod
+    def get_request(url, data, header):
+        """
+        get请求
+        :param url:
+        :param data:
+        :param header:
+        :return: response_dicts
+        """
+    # startswith方法用于检查字符串是否是以指定子字符串开头，是返回True，否返回False。如果参数 beg 和 end 指定值，则在指定范围内检查。
+        if not url.startswith('http://'):
+            url = '%s%s' % ('http://', url)
+            print(url)
+        try:
+            if data is None:
+                response = requests.get(url=url, headers=header)
+            else:
+                response = requests.get(url=url, params=data, headers=header)
+
+        except requests.RequestException as e:
+            print('%s%s' % ('RequestException url', url))
+            print(e)
+            return ()
+
+        except Exception as e:
+            print('%s%s' % ('Exception url', url))
+            print(e)
+            return ()
+
+        # time_consuming为响应时间，单位：ms
+        # microseconds (>= 0 and less than 1 second) 获取微秒部分，大于0小于1秒
+        time_consuming = response.elapsed.microseconds / 1000
+        # time_total为响应时间，单位：s
+        # total_seconds 总时长，单位秒
+        time_total = response.elapsed.total_seconds()
+
+        Consts.STRESS_LIST.append(time_consuming)
+
+        # 存放接口响应信息
+        response_dicts = dict()
+        response_dicts['code'] = response.status_code
+
+        # noinspection PyBroadException
+        try:
+            response_dicts['body'] = response.json()
+        except Exception as e:
+            print(e)
+            response_dicts['body'] = ''
+
+        response_dicts['text'] = response.text
+        response_dicts['time_consuming'] = time_consuming
+        response_dicts['time_total'] = time_total
+
+        return response_dicts
+
+    @staticmethod
+    def post_request(url, data, header):
+        """
+        post请求
+        :param url:
+        :param data:
+        :param header:
+        :return: response_dicts
+        """
+        # startswith方法用于检查字符串是否是以指定子字符串开头，是返回True，否返回False。如果参数 beg 和 end 指定值，则在指定范围内检查。
+        if not url.startswith('http://'):
+            url = '%s%s' % ('http://', url)
+            print(url)
+        try:
+            if data is None:
+                response = requests.post(url=url, headers=header)
+            else:
+                response = requests.post(url=url, data=json.dumps(data), headers=header)
+
+        except requests.RequestException as e:
+            print('%s%s' % ('RequestException url', url))
+            print(e)
+            return ()
+
+        except Exception as e:
+            print('%s%s' % ('Exception url', url))
+            print(e)
+            return ()
+
+        # time_consuming为响应时间，单位：ms
+        # microseconds (>= 0 and less than 1 second) 获取微秒部分，大于0小于1秒
+        time_consuming = response.elapsed.microseconds / 1000
+        # time_total为响应时间，单位：s
+        # total_seconds 总时长，单位秒
+        time_total = response.elapsed.total_seconds()
+
+        Consts.STRESS_LIST.append(time_consuming)
+
+        # 存放接口响应信息
+        response_dicts = dict()
+        response_dicts['code'] = response.status_code
+
+        # noinspection PyBroadException
+        try:
+            response_dicts['body'] = response.json()
+        except Exception as e:
+            print(e)
+            response_dicts['body'] = ''
+
+        response_dicts['text'] = response.text
+        response_dicts['time_consuming'] = time_consuming
+        response_dicts['time_total'] = time_total
+
+        return response_dicts
