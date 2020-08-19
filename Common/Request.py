@@ -125,3 +125,115 @@ class Request:
         response_dicts['time_total'] = time_total
 
         return response_dicts
+
+    @staticmethod
+    def post_request_multipart(url, data, header, file_parm, file, file_type):
+        """
+        提交Multipart/form-data格式的post请求
+        :param url:
+        :param data:
+        :param header:
+        :param file_parm:
+        :param file:
+        :param file_type:
+        :return:
+        """
+        # startswith方法用于检查字符串是否是以指定子字符串开头，是返回True，否返回False。如果参数 beg 和 end 指定值，则在指定范围内检查。
+        if not url.startswith('http://'):
+            url = '%s%s' % ('http://', url)
+            print(url)
+        try:
+            if data is None:
+                response = requests.post(url=url, headers=header)
+            else:
+                data[file_parm] = os.path.basename(file), open(file, 'rb'), file_type
+                enc = MultipartEncoder(
+                    fields=data,
+                    boundary='--------------'+ str(random.randint(1e28, 1e29 - 1))
+                )
+
+                header['Content-Type'] = enc.content_type
+                response = requests.post(url=url, data=data, headers=header)
+
+        except requests.RequestException as e:
+            print('%s%s' % ('RequestException url', url))
+            print(e)
+            return ()
+
+        except Exception as e:
+            print('%s%s' % ('Exception url', url))
+            print(e)
+            return ()
+
+        # time_consuming为响应时间，单位：ms
+        # microseconds (>= 0 and less than 1 second) 获取微秒部分，大于0小于1秒
+        time_consuming = response.elapsed.microseconds / 1000
+        # time_total为响应时间，单位：s
+        # total_seconds 总时长，单位秒
+        time_total = response.elapsed.total_seconds()
+
+        Consts.STRESS_LIST.append(time_consuming)
+
+        # 存放接口响应信息
+        response_dicts = dict()
+        response_dicts['code'] = response.status_code
+
+        # noinspection PyBroadException
+        try:
+            response_dicts['body'] = response.json()
+        except Exception as e:
+            print(e)
+            response_dicts['body'] = ''
+
+        response_dicts['text'] = response.text
+        response_dicts['time_consuming'] = time_consuming
+        response_dicts['time_total'] = time_total
+
+        return response_dicts
+
+    @staticmethod
+    def put_request(url, data, header):
+        """
+        put请求
+        :param url:
+        :param data:
+        :param header:
+        :return:
+        """
+        if not url.startswith('http://'):
+            url = '%s%s' % ('http://', url)
+            print(url)
+
+        try:
+            if data is None:
+                response = requests.put(url=url, headers=header)
+            else:
+                response = requests.put(url=url, data=data, headers=header)
+
+        except requests.RequestException as e:
+            print('%s%s' % ('RequestException url: ', url))
+            print(e)
+            return ()
+
+        except Exception as e:
+            print('%s%s' % ('Exception url: ', url))
+            print(e)
+            return ()
+
+        time_consuming = response.elapsed.microseconds / 1000
+        time_total = response.elapsed.total_seconds()
+
+        Consts.STRESS_LIST.append(time_consuming)
+
+        response_dicts = dict()
+        response_dicts['code'] = response.status_code
+        try:
+            response_dicts['body'] = response.json()
+        except Exception as e:
+            print(e)
+            response_dicts['body'] = ''
+        response_dicts['text'] = response.text
+        response_dicts['time_consuming'] = time_consuming
+        response_dicts['time_total'] = time_total
+
+        return response_dicts
