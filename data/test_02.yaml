@@ -1,0 +1,16 @@
+---
+tests:
+- case: 验证丁总账号登录
+  http:
+    method: POST
+    path: /sso/sso/login
+    headers:
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36
+    params:
+      username: 15658805110
+      password: 6c6ff45dcad1d427f366b03f2de378f8
+      system: 1
+  expected:
+    response:
+      username: 15658805110
+      name: 丁佳
