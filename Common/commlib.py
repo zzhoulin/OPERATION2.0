@@ -4,6 +4,8 @@
 
 import os
 import os.path
+import pprint
+
 import yaml
 
 
@@ -13,7 +15,7 @@ def parse():
     for root, dirs, files in os.walk(yaml_path):
         for name in files:
             watch_file_path = os.path.join(root, name)
-            with open(watch_file_path, 'r', encoding='utf-8') as f:
+            with open(watch_file_path, 'r') as f:
                 page = yaml.safe_load(f)
                 pages.update(page)
         return pages
@@ -25,12 +27,14 @@ class GetPages:
         _page_list = {}
         pages = parse()
         for page, value in pages.items():
-            parameters = value[0]
+            parameters = value['parameters']
             data_list = []
 
             for parameter in parameters:
                 data_list.append(parameter)
             _page_list[page] = data_list
+            pprint.pprint(_page_list)
+
         return _page_list
 
 

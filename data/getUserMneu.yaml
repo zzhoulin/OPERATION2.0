@@ -1,5 +1,5 @@
 ---
-Login:
+getUserMenu:
   dec: "用户登录"
   parameters:
     # 用户名密码正确，登录成功

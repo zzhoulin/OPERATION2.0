@@ -103,4 +103,4 @@ class Config:
 
 if __name__ == "__main__":
     con = Config()
-    print(con)
+    print(con.host_pro)
