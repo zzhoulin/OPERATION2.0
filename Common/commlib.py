@@ -15,7 +15,7 @@ def parse():
     for root, dirs, files in os.walk(yaml_path):
         for name in files:
             watch_file_path = os.path.join(root, name)
-            with open(watch_file_path, 'r') as f:
+            with open(watch_file_path, 'r', encoding='utf-8') as f:
                 page = yaml.safe_load(f)
                 pages.update(page)
         return pages
