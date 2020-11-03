@@ -40,3 +40,17 @@
 [INFO 2020-08-27 10:09:50初始化配置文件，path=D:\TestProject\Operation2.0\Config\config.ini
 
 [DEBUG 2020-08-27 10:12:55token: fd48d11369f9ef844779b15eb380f37b98b1c386d241654c8189953dde4fd397
+[INFO 2020-11-02 19:24:10解析yaml， Path:D:\TestProject\Operation2.0/data/test_02.yaml
+[INFO 2020-11-02 19:41:23解析yaml， Path:D:\TestProject\Operation2.0/data/login.yaml
+[INFO 2020-11-02 20:00:04解析yaml， Path:D:\TestProject\Operation2.0/data/login.yaml
+[INFO 2020-11-03 10:36:29解析yaml， Path:D:\TestProject\Operation2.0/data/login01.yaml
+[INFO 2020-11-03 10:54:07解析yaml， Path:D:\TestProject\Operation2.0/data/login01.yaml
+[INFO 2020-11-03 10:55:30解析yaml， Path:D:\TestProject\Operation2.0/data/login01.yaml
+[INFO 2020-11-03 10:59:21解析yaml， Path:D:\TestProject\Operation2.0/data/login01.yaml
+[INFO 2020-11-03 10:59:41解析yaml， Path:D:\TestProject\Operation2.0/data/login01.yaml
+[INFO 2020-11-03 11:00:28解析yaml， Path:D:\TestProject\Operation2.0/data/login01.yaml
+[INFO 2020-11-03 11:04:54初始化配置文件，path=D:\TestProject\Operation2.0\Config\config.ini
+
+[INFO 2020-11-03 11:07:18解析yaml， Path:D:\TestProject\Operation2.0/data/login01.yaml
+[INFO 2020-11-03 11:07:50解析yaml， Path:D:\TestProject\Operation2.0/data/login01.yaml
+[INFO 2020-11-03 11:13:18解析yaml， Path:D:\TestProject\Operation2.0/data/login01.yaml

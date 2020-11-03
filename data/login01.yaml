@@ -1,0 +1,11 @@
+---
+Login:
+- case: "验证账号登录"
+  parameters:
+      # 用户名、密码正确，登录成功
+      - url: /sso/sso/login
+        data: {"username":"15658805110","password":"6c6ff45dcad1d427f366b03f2de378f8","system":"1"}
+        header: {
+            'Content-Type': 'application/json;charset=UTF-8'
+        }
+        test: 'aaa'

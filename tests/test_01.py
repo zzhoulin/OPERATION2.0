@@ -6,7 +6,7 @@ import pytest
 from Common.commlib import get_test_data
 
 
-cases, list_params = get_test_data("D:/TestProject/Operation2.0/data/test_02.yaml")
+cases, list_params = get_test_data("D:/TestProject/Operation2.0/data/login.yaml")
 
 
 class Test_01(object):

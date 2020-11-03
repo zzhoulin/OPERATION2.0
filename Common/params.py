@@ -19,7 +19,7 @@ def get_parameter(name):
 
 
 class Login:
-    log.info('解析yaml， Path:' + path_dir + '/data/test_02.yaml')
+    log.info('解析yaml， Path:' + path_dir + '/data/login01.yaml')
     params = get_parameter('Login')
     url = []
     data = []
@@ -30,10 +30,18 @@ class Login:
         header.append(params[i]['header'])
 
 
-class GetUserMenu:
-    log.info('解析yaml，path:' + path_dir + '/data/test_02.yaml')
-    params = get_parameter('GetUserMenu')
+class GetUserResource:
+    log.info('解析yaml，path:' + path_dir + '/data/GetUserResource01.yaml')
+    params = get_parameter('GetUserResource')
     url = []
     data = []
     header = []
     for i in range(0, len(params)):
+        url.append(params[i]['url'])
+        data.append(params[i]['data'])
+        header.append(params[i]['header'])
+
+
+if __name__ == '__main__':
+    a = Login
+    print(a.url[0])
